@@ -1,0 +1,39 @@
+{% extends 'default.html' %}
+
+{% block title %}
+    Вход
+{% endblock title %}
+
+{% block content %}
+    <h1>
+        Вход
+    </h1>
+        <p>
+            Если вы еще не создали учетную запись, пожалуйста, сначала <a href="/accounts/signup/">зарегистрируйтесь</a>.
+        </p>
+<form method="post" action="/accounts/login/">
+                <input type="hidden" name="csrfmiddlewaretoken" value="39GhL30EeMJn6i5Upjb14JBCZtYMgLfWYrBHjH2eFc8juqFNCJziVRKstabCCqHD"> {% csrf_token %}
+                <p>
+    <label for="id_login">E-mail:</label>
+    <input type="email" name="login" placeholder="Введите e-mail адрес" autocomplete="email" maxlength="320" required id="id_login">
+  </p>
+  <p>
+    <label for="id_password">Пароль:</label>
+    <input type="password" name="password" placeholder="Введите пароль" autocomplete="current-password" required aria-describedby="id_password_helptext" id="id_password">
+
+      <span class="helptext" id="id_password_helptext"><a href="/accounts/password/reset/">Забыли пароль?</a></span>
+  </p>
+  <p>
+    <label for="id_remember">Запомнить меня:</label>
+    <input type="checkbox" name="remember" id="id_remember">
+  </p>
+
+<button type="submit">Войти</button>
+    </form>
+        <hr>
+        <h2>
+            Или войдите через:
+        </h2>
+    <a title="Yandex" href="/accounts/yandex/login/?process=login">Yandex</a>
+
+{% endblock content %}

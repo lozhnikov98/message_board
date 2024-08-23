@@ -1,0 +1,38 @@
+{% extends 'default.html' %}
+
+{% block title %}
+    Регистрация
+{% endblock title %}
+
+{% block content %}
+     <h1>
+        Регистрация
+    </h1>
+    <p>
+        У вас уже есть аккаунт? Тогда, пожалуйста <a href="/accounts/login/">войдите</a>.
+    </p>
+<form method="post" action="/accounts/signup/">
+
+                <input type="hidden" name="csrfmiddlewaretoken" value="a8G0N7hOy1YH4k15oLYXVAo3716kytYaGJ4t6f0fuv4i8NwdbdfU9UiF64F26Z9d">{% csrf_token %}
+                <p>
+    <label for="id_email">Email:</label>
+    <input type="email" name="email" placeholder="Введите e-mail адрес" autocomplete="email" maxlength="320" required id="id_email">
+  </p>
+  <p>
+    <label for="id_password1">Пароль:</label>
+    <input type="password" name="password1" placeholder="Введите пароль" autocomplete="new-password" required aria-describedby="id_password1_helptext" id="id_password1">
+  </p>
+  <p>
+    <label for="id_password2">Подтвердите пароль:</label>
+    <input type="password" name="password2" placeholder="Подтвердите пароль" autocomplete="new-password" required id="id_password2">
+  </p>
+    <button type="submit">Зарегистрироваться</button>
+
+</form>
+        <hr>
+        <h2>
+            Или войдите через:
+        </h2>
+    <a title="Yandex" href="/accounts/yandex/login/?process=login">Yandex</a>
+
+{% endblock content %}

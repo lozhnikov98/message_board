@@ -1,0 +1,36 @@
+{% extends 'default.html' %}
+
+{% block title %}
+Комментарий
+{% endblock title %}
+
+{% block content %}
+<hr>
+<ul>
+  <div align="left">
+    <strong>Меню:</strong>
+    <li>
+    <a class="nav-link" href="{% url 'comm' %}">Комментарии к моим постам</a>
+    </li>
+    <li>
+    <a class="nav-link" href="/accounts/email/">Изменить E-mail</a>
+    </li>
+    <li>
+    <a class="nav-link" href="/accounts/password/change/">Изменить пароль</a>
+    </li>
+  </div>
+</ul>
+<hr>
+<form action="" method="get">
+    {{ filterset.form.as_p }}
+    <input type="submit" value="Отправить">
+</form>
+     <hr>
+    {% for com in MyCommentList %}
+        <h1><a href="{% url 'onecomm' com.id %}">{{ com.text }}</a><br></h1>
+        <h5>{{ com.author }}<br></h5>
+            {{ com.dateComm }}<br>
+            {{ com.status }}<br>
+    <hr>
+    {% endfor %}
+{% endblock content %}

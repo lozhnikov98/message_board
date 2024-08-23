@@ -1,0 +1,26 @@
+{% extends 'default.html' %}
+
+{% block title %}
+{{ Message.title }}
+{% endblock title %}
+
+
+{% block content %}
+<td>{{ Message.nameCat }}</td>
+<hr>
+<td>{{ Message.title }}</td>
+<hr>
+<td>{{ Message.text }}</td>
+<hr>
+<td>{{ Message.author.username }}</td>
+<hr>
+<td>
+    {% if Message.files %}
+    <img src="{{ Message.files.url }}">
+    {% endif %}
+</td>
+<td>
+    <a href="{% url 'Comments' pk=Message.id %}"><button>Comments</button></a>
+    <a href="{% url 'addcomm' pk=Message.id %}"><button>Add comments</button></a>
+</td>
+{% endblock content %}

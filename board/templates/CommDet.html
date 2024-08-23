@@ -1,0 +1,19 @@
+
+{% extends 'default.html' %}
+
+{% block title %}
+Комментарии
+{% endblock title %}
+
+{% block content %}
+     <hr>
+    {% for com in CommDet %}
+            {% if com.status == True %}
+        <h1>{{ com.text }}</h1><br>
+        <h5>{{ com.author }}</h5><br>
+            {{ com.dateComm }}<br>
+            {{ com.status }}<br>
+            {% endif %}
+    <hr>
+    {% endfor %}
+{% endblock content %}

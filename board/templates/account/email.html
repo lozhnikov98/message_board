@@ -1,0 +1,69 @@
+{% extends 'default.html' %}
+
+{% block title %}
+E-mail адреса
+{% endblock title %}
+
+{% block content %}
+<hr>
+<ul>
+  <div align="left">
+    <strong>Меню:</strong>
+    <li>
+    <a class="nav-link" href="{% url 'comm' %}">Комментарии к моим постам</a>
+    </li>
+    <li>
+    <a class="nav-link" href="/accounts/email/">Изменить E-mail</a>
+    </li>
+    <li>
+    <a class="nav-link" href="/accounts/password/change/">Изменить пароль</a>
+    </li>
+  </div>
+</ul>
+<hr>
+
+    <h1>
+        E-mail адреса
+    </h1>
+            <p>
+            С вашей учетной записью связаны следующие адреса электронной почты:
+        </p>
+<form method="post" action="/accounts/email/">
+    <input type="hidden" name="csrfmiddlewaretoken" value="gWpZcjQXvp30EPcJennmhjD9HcBjauYM6uDkOqYOj9Yn4xPvHkzdY4olCYibIr0W">{% csrf_token %}
+       <p>
+            <input
+               checked
+               name="email"
+               id="email_radio_0"
+               value= "{{ user.email }}"
+               type="radio">
+            <label for="email_radio_0"> {{ user.email }} </label>
+ </p>
+    <button name="action_primary" type="submit" > Сделать основным </button>
+    <button name="action_remove" type="submit"> Удалить </button> </form>
+        <h2>
+            Добавить e-mail адрес
+        </h2>
+<form method="post" action="/accounts/email/">
+
+                <input type="hidden" name="csrfmiddlewaretoken" value="gWpZcjQXvp30EPcJennmhjD9HcBjauYM6uDkOqYOj9Yn4xPvHkzdY4olCYibIr0W">
+                <p>
+    <label for="id_email">Email:</label>
+    <input type="email" name="email" placeholder="Email address" maxlength="320" required id="id_email">
+  </p> <button name="action_add" type="submit">Добавить e-mail</button>
+</form>
+    <script type="text/javascript">
+(function() {
+  var message = "Вы действительно хотите удалить выбранный адрес электронной почты?";
+  var actions = document.getElementsByName('action_remove');
+  if (actions.length) {
+    actions[0].addEventListener("click", function(e) {
+      if (! confirm(message)) {
+        e.preventDefault();
+      }
+    });
+  }
+})();
+    </script>
+
+{% endblock content %}

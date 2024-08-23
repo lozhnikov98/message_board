@@ -1,0 +1,44 @@
+{% extends 'default.html' %}
+
+{% block title %}
+Мой профиль
+{% endblock title %}
+
+{% block content %}
+<hr>
+<ul>
+  <div align="left">
+    <strong>Меню:</strong>
+    <li>
+    <a class="nav-link" href="{% url 'comm' %}">Комментарии к моим постам</a>
+    </li>
+    <li>
+    <a class="nav-link" href="/accounts/email/">Изменить E-mail</a>
+    </li>
+    <li>
+    <a class="nav-link" href="/accounts/password/change/">Изменить пароль</a>
+    </li>
+  </div>
+</ul>
+<hr>
+    <div class="content-section">
+      <div class="media">
+        <div class="media-body">
+          <h2 class="account-heading">Пользователь: {{ post_owner.username }}</h2>
+            {% if post_owner.email %}
+          <p class="text-secondary">E-Mail: {{ post_owner.email }}</p>
+            {% endif %}
+        </div>
+        {% for Post in user_posts %}
+          <li class="list-group-item">
+            <h1>  <a href="{% url 'Message' Post.id %}">{{ Post.title }} </a> </h1>
+            <h2>  {{ Post.text }} </h2>
+            <h5>  {{ Post.dateMsg }} </h5>
+          </li>
+            <a href="{% url 'edit' pk=Post.id %}"><button>Update</button></a>
+            <a href="{% url 'delete' pk=Post.id %}"><button>Delete</button></a>
+        {% endfor %}
+      </div>
+    </div>
+
+{% endblock content %}

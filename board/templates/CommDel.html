@@ -1,0 +1,15 @@
+{% extends 'default.html' %}
+
+{% block title %}
+Удалить комментарий?
+{% endblock title %}
+
+{% block content %}
+<h1>Удаление поста</h1>
+<hr>
+<form action="" method="post">
+    {% csrf_token %}
+    <p>Удаляем "{{ CommDel.text }}"?</p>
+    <input type="submit" value="Delete" />
+</form>
+{% endblock content %}

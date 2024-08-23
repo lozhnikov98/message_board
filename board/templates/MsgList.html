@@ -1,0 +1,18 @@
+{% extends 'default.html' %}
+
+{% block title %}
+Все объявления
+{% endblock title %}
+
+{% block content %}
+{% if Messages %}
+    {% for msg in Messages %}
+    <h2>
+       <a href="{% url 'Message' msg.id %}">{{ msg.title }}</a>
+    </h2>
+    {% endfor %}
+{% else %}
+<h2>Объявлений нет</h2>
+{% endif %}
+
+{% endblock content %}
